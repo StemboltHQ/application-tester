@@ -1,8 +1,5 @@
 require 'net/http'
 
-url = "http://tommyjohn.com"
-url2 = "http://porkchop.club/"
-
 def check_www(url)
   uri = URI.parse(url)
   res = Net::HTTP.get_response(uri)
@@ -14,5 +11,9 @@ def check_www(url)
   end
 end
 
-check_www(url)
-check_www(url2)
+begin
+  url = ARGV[0]
+  check_www(url)
+rescue Exception => error
+  puts error.message
+end
