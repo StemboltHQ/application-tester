@@ -10,6 +10,10 @@ class UrlRequest
   end
 
   def is_redirected?
-    get.code == "301"
+    get.code == "301" && is_same_website?
+  end
+
+  def is_same_website?
+    !!(get.header['Location'] =~ /https?:\/\/www.#{@uri.host}\/$/)
   end
 end
