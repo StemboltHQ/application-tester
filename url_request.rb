@@ -16,4 +16,8 @@ class UrlRequest
   def is_same_website?
     !!(get.header['Location'] =~ /https?:\/\/www.#{@uri.host}\/$/)
   end
+
+  def includes_https?
+    get.header['location'].include?("https")
+  end
 end

@@ -4,8 +4,5 @@ url = ARGV[0]
 request = UrlRequest.new(url)
 request.get
 
-if request.is_redirected?
-  puts "YEP! It redirects!"
-else
-  puts "NOPE! Something is wrong..."
-end
+puts "Redirects to www: #{request.is_redirected?}"
+puts "Redirects to https: #{request.includes_https?}"
