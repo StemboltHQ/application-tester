@@ -10,7 +10,11 @@ class UrlRequest
   end
 
   def is_redirected?
-    get.code == "301" && is_same_website?
+    get.code == "301"
+  end
+
+  def redirects_to_www?
+    is_redirected? && is_same_website?
   end
 
   def is_same_website?

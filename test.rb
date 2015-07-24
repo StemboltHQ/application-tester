@@ -2,7 +2,6 @@ require_relative 'url_request'
 
 url = ARGV[0]
 request = UrlRequest.new(url)
-request.get
 
-puts "Redirects to www: #{request.is_redirected?}"
-puts "Redirects to https: #{request.includes_https?}"
+puts "Redirects to www: #{request.redirects_to_www?}"
+puts "Redirects to https: #{request.redirects_to_https?}"
