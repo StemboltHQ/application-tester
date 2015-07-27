@@ -1,6 +1,9 @@
 # A sample Gemfile
 source "https://rubygems.org"
-#test coverage
-gem 'simplecov', :require => false, :group => :test
 
-# gem "rails"
+group :test do
+  gem 'rspec'
+  #test coverage
+  gem 'simplecov', require: false
+  gem 'webmock'
+end
