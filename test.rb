@@ -9,3 +9,4 @@ puts "Redirects to https: #{request.redirects_to_https?}"
 
 request2 = RobotsFile.new(url)
 puts "Has robots.txt: #{request2.exists?}"
+puts "Has sitemap file: #{request2.has_sitemap?}"

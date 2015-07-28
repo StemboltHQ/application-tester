@@ -10,6 +10,10 @@ class RobotsFile
     request_data.code == "200"
   end
 
+  def has_sitemap?
+    !!(request_data.body =~ /.*Sitemap: https?:\/\/.*\/sitemap.xml(.gz)?/)
+  end
+
   private
   attr_reader :url
 
