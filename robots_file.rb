@@ -9,6 +9,10 @@ class RobotsFile
     get.class == Net::HTTPOK
   end
 
+  def has_sitemap?
+    !!(get.body =~ /.*Sitemap: https?:\/\/.*\/sitemap.xml(.gz)?/)
+  end
+
   private
   attr_reader :uri
 
