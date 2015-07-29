@@ -1,4 +1,6 @@
 require_relative "url_request"
+require 'open-uri'
+
 class RobotsFile
 
   def initialize (url)
@@ -10,8 +12,12 @@ class RobotsFile
     request_data.code == "200"
   end
 
-  def has_sitemap?
-    !!(request_data.body =~ /.*Sitemap: https?:\/\/.*\/sitemap.xml(.gz)?/)
+  def sitemap_path
+    request_data.body[/.*Sitemap: https?:\/\/.*\/sitemap.xml(.gz)?$/]
+  end
+
+  def sitemap_is_empty?
+    download_sitemap.nil?
   end
 
   private
@@ -19,5 +25,13 @@ class RobotsFile
 
   def request_data
     UrlRequest.new(url).get
+  end
+
+  def sitemap_url
+    sitemap_path.match(/Sitemap:\s*(.*sitemap.xml(.gz)?)$/)[1]
+  end
+
+  def download_sitemap
+    open(sitemap_url).read
   end
 end
