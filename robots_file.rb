@@ -35,7 +35,7 @@ class RobotsFile < UrlRequest
   end
 
   def get_sitemap_file
-    Net::HTTP.get_response(URI.parse(sitemap_url))
+    get_request(sitemap_url)
   end
 
   def sitemap_file_exists?
@@ -43,6 +43,6 @@ class RobotsFile < UrlRequest
   end
 
   def open_sitemap
-    Net::HTTP.get_response(URI.parse(get_sitemap_file.header['Location']))
+    get_request(get_sitemap_file.header['Location'])
   end
 end
