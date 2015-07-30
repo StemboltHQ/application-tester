@@ -1,23 +1,17 @@
-require_relative "url_request"
-require 'open-uri'
-
 class RobotsFile
-
-  def initialize (url)
-    url+= "/robots.txt"
+  def initialize(url)
     @url = url
+    raise ArgumentError.new("Invalid url") unless request_data.code == "200"
   end
 
-  def exists?
-    request_data.code == "200"
-  end
-
-  def sitemap_path
-    request_data.body[/.*Sitemap: https?:\/\/.*\/sitemap.xml(.gz)?$/]
+  def sitemap_url
+    return nil unless sitemap_match
+    sitemap_match[1]
   end
 
   def sitemap_is_empty?
-    download_sitemap.nil?
+    return true unless sitemap_file_exists?
+    open_sitemap.header['Content-length'] == 0
   end
 
   private
@@ -27,11 +21,19 @@ class RobotsFile
     UrlRequest.new(url).get
   end
 
-  def sitemap_url
-    sitemap_path.match(/Sitemap:\s*(.*sitemap.xml(.gz)?)$/)[1]
+  def sitemap_match
+    request_data.body.match(/Sitemap:\s*(.*sitemap.xml(.gz)?)$/)
   end
 
-  def download_sitemap
-    open(sitemap_url).read
+  def sitemap_request
+    UrlRequest.new(sitemap_url).get
+  end
+
+  def sitemap_file_exists?
+    !(sitemap_request.code == "404")
+  end
+
+  def open_sitemap
+    UrlRequest.new(sitemap_request.header['Location']).get
   end
 end
