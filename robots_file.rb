@@ -1,20 +1,19 @@
-class RobotsFile
-
-  def initialize (url)
-    @uri = URI.parse(url)
-  end
+class RobotsFile < UrlRequest
 
   def exists?
     set_path
     get.class == Net::HTTPOK
   end
 
-  def has_sitemap?
+  def has_sitemap_link?
     !sitemap_string.nil?
   end
 
   def sitemap_is_empty?
-    download_sitemap.nil?
+      if sitemap_file_exists?
+        return open_sitemap.header['Content-length'] == 0
+      end
+     true
   end
 
   private
@@ -25,19 +24,25 @@ class RobotsFile
     uri.path = '/robots.txt'
   end
 
-  def get
-    Net::HTTP.get_response(uri)
-  end
-
   def sitemap_string
-    get.body[/.*Sitemap: https?:\/\/.*\/sitemap.xml(.gz)?$/]
+    if exists?
+      get.body[/.*Sitemap: https?:\/\/.*\/sitemap.xml(.gz)?$/]
+    end
   end
 
   def sitemap_url
     sitemap_string.match(/Sitemap:\s*(.*sitemap.xml(.gz)?)$/)[1]
   end
 
-  def download_sitemap
-    open(sitemap_url).read
+  def get_sitemap_file
+    Net::HTTP.get_response(URI.parse(sitemap_url))
+  end
+
+  def sitemap_file_exists?
+    !(get_sitemap_file.code == "404")
+  end
+
+  def open_sitemap
+    Net::HTTP.get_response(URI.parse(get_sitemap_file.header['Location']))
   end
 end
