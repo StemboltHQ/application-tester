@@ -8,6 +8,13 @@ class Redirection < UrlRequest
     is_redirected? && includes_https?
   end
 
+  def redirection
+    if is_redirected?
+      return get.header['Location']
+    end
+    uri.to_s
+  end
+
   private
 
   def is_redirected?
@@ -19,7 +26,7 @@ class Redirection < UrlRequest
   end
 
   def includes_https?
-    get.header['location'].include?("https")
+    get.header['Location'].include?("https")
   end
 
 end

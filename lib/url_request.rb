@@ -18,6 +18,10 @@ class UrlRequest
     Net::HTTP.get_response(parse(url))
   end
 
+  def request_code (url)
+    get_request(url).code
+  end
+
   private
   attr_reader :uri
 end
