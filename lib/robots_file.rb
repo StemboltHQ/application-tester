@@ -6,14 +6,20 @@ class RobotsFile < UrlRequest
   end
 
   def has_sitemap_link?
-    !sitemap_string.nil?
+    !sitemap_string.empty?
   end
 
-  def sitemap_is_empty?
-      if sitemap_file_exists?
-        return open_sitemap.header['Content-length'] == 0
+  def all_sitemaps_empty?
+    sitemap_string.each do |url|
+      unless sitemap_is_empty?(url[0])
+        return false
       end
-     true
+    end
+    true
+  end
+
+  def sitemaps_count
+    sitemap_string.length
   end
 
   private
@@ -24,25 +30,29 @@ class RobotsFile < UrlRequest
     uri.path = '/robots.txt'
   end
 
+  def sitemap_is_empty?(url)
+    if sitemap_file_exists?(url)
+      return open_sitemap(url).header['Content-length'] == 0
+    end
+    true
+  end
+
   def sitemap_string
     if exists?
-      get.body[/.*Sitemap: https?:\/\/.*\/sitemap.xml(.gz)?$/]
+      return get.body.scan(/Sitemap:\s*(.*sitemap.xml(.gz)?)$/)
     end
+    []
   end
 
-  def sitemap_url
-    sitemap_string.match(/Sitemap:\s*(.*sitemap.xml(.gz)?)$/)[1]
+  def sitemap_file_exists?(url)
+    !(request_code(url) == "404")
   end
 
-  def get_sitemap_file
-    get_request(sitemap_url)
-  end
-
-  def sitemap_file_exists?
-    !(get_sitemap_file.code == "404")
-  end
-
-  def open_sitemap
-    get_request(get_sitemap_file.header['Location'])
+  def open_sitemap(url)
+    if request_code(url) == "301"
+      get_request(get_request(url).header['Location'])
+    else
+      get_request(url)
+    end
   end
 end

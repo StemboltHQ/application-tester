@@ -39,12 +39,30 @@ RSpec.describe RobotsFile do
     end
   end
 
-  describe "#sitemap_is_empty?" do
-    subject { url_request.sitemap_is_empty? }
+  describe "#sitemaps_count" do
+    subject { url_request.sitemaps_count }
 
-    context "sitemap file is  not empty" do
-      it "returns false" do
-        expect(subject).to eq false
+    it "returns number of sitemaps specified" do
+      expect(subject).to eq 1
+    end
+  end
+
+  describe "#all_sitemaps_empty?" do
+    subject { url_request.all_sitemaps_empty? }
+
+    context "sitemap files are not empty" do
+      context "sitemap link is redirected" do
+
+        it "returns false" do
+          expect(subject).to eq false
+        end
+      end
+
+      context "sitemap link is not redirected" do
+        let(:url_request) { described_class.new("http://www.testnoredirection.com") }
+        it "returns false" do
+          expect(subject).to eq false
+        end
       end
     end
 

@@ -19,7 +19,7 @@ class Redirection < UrlRequest
   end
 
   def includes_https?
-    get.header['location'].include?("https")
+    get.header['Location'].include?("https")
   end
 
 end

@@ -18,9 +18,9 @@ class Application_tester
   def robots_check
     website = RobotsFile.new(url)
     puts "Robots.txt exists: #{website.exists?}"
-    puts "Has a link to the Sitemap: #{website.has_sitemap_link?}"
+    puts "Number of Sitemaps: #{website.sitemaps_count}"
     if website.has_sitemap_link?
-      puts "Sitemap file is empty: #{website.sitemap_is_empty?}"
+      puts "Sitemap files are not empty: #{!website.all_sitemaps_empty?}"
     end
   end
 
