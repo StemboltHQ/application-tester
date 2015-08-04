@@ -1,14 +1,4 @@
-require 'net/http'
-
-class UrlRequest
-
-  def initialize (url)
-    @uri = URI.parse(url)
-  end
-
-  def get
-    Net::HTTP.get_response(uri)
-  end
+class Redirection < UrlRequest
 
   def redirects_to_www?
     is_redirected? && is_same_website?
@@ -19,8 +9,6 @@ class UrlRequest
   end
 
   private
-
-  attr_reader :uri
 
   def is_redirected?
     get.code == "301"
