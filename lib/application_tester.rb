@@ -1,6 +1,7 @@
 require_relative 'url_request'
 require_relative 'robots_file'
 require_relative 'website'
+require_relative 'sitemap'
 
 class ApplicationTester
   attr_reader :website
@@ -18,7 +19,7 @@ class ApplicationTester
     puts "Robots.txt exists: #{!!website.robots_file}"
     puts "Has a link to the Sitemap: #{!!website.robots_file.sitemap_url}"
     if website.robots_file.sitemap_url
-      puts "Sitemap file is empty: #{website.robots_file.sitemap_is_empty?}"
+      puts "Sitemap file is empty: #{website.robots_file.sitemap.empty?}"
     end
   end
 
@@ -27,4 +28,3 @@ class ApplicationTester
     robots_check
   end
 end
-

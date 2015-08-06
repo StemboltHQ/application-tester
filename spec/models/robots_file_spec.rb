@@ -21,20 +21,20 @@ RSpec.describe RobotsFile do
     end
   end
 
-  describe "#sitemap_is_empty?" do
-    subject { robots_file.sitemap_is_empty? }
+  describe "#sitemap" do
+    subject { robots_file.sitemap }
 
-    context "sitemap file is  not empty" do
-      it "returns false" do
-        expect(subject).to eq false
+    context "has a valid sitemap link" do
+      it "returns a new Sitemap object" do
+        expect(subject).to be_a(Sitemap)
       end
     end
 
-    context "sitemap does not exist" do
-      let(:robots_file) { described_class.new("http://www.testfailmap.com/robots.txt") }
+    context "doesn't have a valid sitemap link" do
+      let(:robots_file) { described_class.new("http://www.testnositemap.com/robots.txt") }
 
-      it "returns true" do
-        expect(subject).to eq true
+      it "returns nil" do
+        expect(subject).to eq nil
       end
     end
   end

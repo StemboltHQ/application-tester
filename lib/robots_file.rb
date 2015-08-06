@@ -9,9 +9,9 @@ class RobotsFile
     sitemap_match[1]
   end
 
-  def sitemap_is_empty?
-    return true unless sitemap_file_exists?
-    open_sitemap.header['Content-length'] == 0
+  def sitemap
+    return nil unless sitemap_url
+    Sitemap.new(sitemap_url)
   end
 
   private
@@ -23,17 +23,5 @@ class RobotsFile
 
   def sitemap_match
     request_data.body.match(/Sitemap:\s*(.*sitemap.xml(.gz)?)$/)
-  end
-
-  def sitemap_request
-    UrlRequest.new(sitemap_url).get
-  end
-
-  def sitemap_file_exists?
-    !(sitemap_request.code == "404")
-  end
-
-  def open_sitemap
-    UrlRequest.new(sitemap_request.header['Location']).get
   end
 end
