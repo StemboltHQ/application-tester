@@ -16,14 +16,14 @@ class ApplicationTester
   end
 
   def robots_check
-    puts "Robots.txt exists: #{!!website.robots_file}"
+    puts "Has Robots.txt: #{!!website.robots_file}"
   end
 
   def sitemap_check
     if website.robots_file
-      puts "Has a link to the Sitemap: #{!!website.robots_file.sitemap_url}"
-      if website.robots_file.sitemap_url
-        puts "Sitemap file is empty: #{website.robots_file.sitemap.empty?}"
+      puts "Has Sitemap links: #{!!website.robots_file.sitemap_urls}"
+      if website.robots_file.sitemap_urls
+        puts "All the Sitemap files exist and are not empty: #{!website.robots_file.has_empty_sitemaps?}"
       end
     end
   end

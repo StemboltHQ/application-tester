@@ -3,12 +3,12 @@ require "spec_helper"
 RSpec.describe RobotsFile do
   let(:robots_file) { described_class.new("http://www.test.com/robots.txt") }
 
-  describe "#sitemap_url" do
-    subject { robots_file.sitemap_url }
+  describe "#sitemap_urls" do
+    subject { robots_file.sitemap_urls }
 
     context "sitemap link is present" do
       it "returns the url" do
-        expect(subject).to eq "http://www.test.com/sitemap.xml.gz"
+        expect(subject).to eq ["http://www.test.com/sitemap.xml.gz"]
       end
     end
 
@@ -21,20 +21,20 @@ RSpec.describe RobotsFile do
     end
   end
 
-  describe "#sitemap" do
-    subject { robots_file.sitemap }
+  describe "#has_empty_sitemaps?" do
+    subject { robots_file.has_empty_sitemaps? }
 
-    context "has a valid sitemap link" do
-      it "returns a new Sitemap object" do
-        expect(subject).to be_a(Sitemap)
+    context "all sitemap links are valid" do
+      it "returns true" do
+        expect(subject).to eq false
       end
     end
 
-    context "doesn't have a valid sitemap link" do
-      let(:robots_file) { described_class.new("http://www.testnositemap.com/robots.txt") }
+    context "has empty sitemap links" do
+      let(:robots_file) { described_class.new("http://www.testfailmap.com/robots.txt") }
 
-      it "returns nil" do
-        expect(subject).to eq nil
+      it "returns true" do
+        expect(subject).to eq true
       end
     end
   end

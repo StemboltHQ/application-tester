@@ -4,14 +4,13 @@ class RobotsFile
     raise ArgumentError.new("Invalid url") unless request_data.code == "200"
   end
 
-  def sitemap_url
-    return nil unless sitemap_match
-    sitemap_match[1]
+  def sitemap_urls
+    return nil unless sitemap_match.any?
+    sitemap_match.map { |x| x[0] }
   end
 
-  def sitemap
-    return nil unless sitemap_url
-    Sitemap.new(sitemap_url)
+  def has_empty_sitemaps?
+    empty_sitemaps.any?
   end
 
   private
@@ -22,6 +21,14 @@ class RobotsFile
   end
 
   def sitemap_match
-    request_data.body.match(/Sitemap:\s*(.*sitemap.xml(.gz)?)$/)
+    request_data.body.scan(/Sitemap:\s*(.*sitemap.xml(.gz)?)$/)
+  end
+
+  def sitemaps
+    sitemap_urls.map { |url| Sitemap.new(url) }
+  end
+
+  def empty_sitemaps
+    sitemaps.select { |sitemap| sitemap.empty? }
   end
 end
