@@ -13,6 +13,7 @@ class ApplicationTester
   def redirection_check
     puts "Redirects to www: #{website.redirects_to_www?}"
     puts "Redirects to https: #{website.redirects_to_https?}"
+    update_url(website.redirects_to)
   end
 
   def robots_check
@@ -32,5 +33,10 @@ class ApplicationTester
     redirection_check
     robots_check
     sitemap_check
+  end
+
+  private
+  def update_url (new_url)
+    initialize(new_url)
   end
 end

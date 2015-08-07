@@ -17,6 +17,11 @@ class Website
     false
   end
 
+  def redirects_to
+    return url unless is_redirected?
+    request_data.header['Location']
+  end
+
   private
   attr_reader :url
 

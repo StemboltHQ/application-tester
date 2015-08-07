@@ -58,4 +58,21 @@ RSpec.describe Website do
       end
     end
   end
+
+  describe "#redirection" do
+    subject { url_request.redirects_to }
+
+    context "redirects to https" do
+      it "returns a new url" do
+        expect(subject).to eq "https://www.test.com/"
+      end
+    end
+
+    context "does not redirect to https" do
+      let(:url_request) { described_class.new("http://testfail.com") }
+      it "returns the same url" do
+        expect(subject).to eq "http://testfail.com"
+      end
+    end
+  end
 end
