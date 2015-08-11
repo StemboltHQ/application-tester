@@ -2,10 +2,14 @@ require 'json'
 
 class Markup
   TESTING_TOOL_URL = "https://structured-data-testing-tool.developers.google.com/sdtt/u/0/web/validate"
-
   attr_reader :url
+
   def initialize(url)
     @url = url
+  end
+
+  def correct?
+    number_of_errors == 0
   end
 
   def number_of_errors

@@ -2,6 +2,7 @@ require_relative 'url_request'
 require_relative 'robots_file'
 require_relative 'website'
 require_relative 'sitemap'
+require_relative 'markup.rb'
 
 class ApplicationTester
   attr_reader :website
@@ -29,10 +30,15 @@ class ApplicationTester
     end
   end
 
+  def markup_check
+    puts "The page has the correct markup: #{website.correct_markup?}"
+  end
+
   def check_all
     redirection_check
     robots_check
     sitemap_check
+    markup_check
   end
 
   private
