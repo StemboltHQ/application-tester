@@ -13,4 +13,8 @@ class UrlRequest
   def uri
     URI.parse(url)
   end
+
+  def post_form (params)
+    Net::HTTP.post_form(uri, params)
+  end
 end

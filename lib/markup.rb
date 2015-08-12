@@ -17,7 +17,7 @@ class Markup
   private
   def post
     params = { url: url }
-    Net::HTTP.post_form(URI.parse(TESTING_TOOL_URL), params)
+    UrlRequest.new(TESTING_TOOL_URL).post_form(params)
   end
 
   def errors_match
