@@ -1,5 +1,3 @@
-require 'json'
-
 class Markup
   TESTING_TOOL_URL = "https://structured-data-testing-tool.developers.google.com/sdtt/u/0/web/validate"
   attr_reader :url
@@ -13,7 +11,7 @@ class Markup
   end
 
   def number_of_errors
-    json_body['tripleGroups'][0]['numErrors']
+    errors_match.to_i
   end
 
   private
@@ -22,7 +20,7 @@ class Markup
     Net::HTTP.post_form(URI.parse(TESTING_TOOL_URL), params)
   end
 
-  def json_body
-    JSON.parse(post.body[5..-1])
+  def errors_match
+    post.body.match(/\"numErrors\":(\d*)/)[1]
   end
 end
