@@ -1,27 +1,23 @@
 require 'sinatra'
 require 'Haml'
+require_relative 'lib/application_tester'
 
   get '/' do
     haml :index
   end
 
   post '/redirection-test' do
-    application = ApplicationTester.new(params[:url])
-    "#{application.redirection_check}"
+    haml :redirection_test
   end
 
   post '/robots-file-test' do
-    application = Application_tester.new(params[:url])
-    "#{application.robots_check}"
+    haml :robots_file_test
   end
 
   post '/sitemaps-test' do
-    application = Application_tester.new(params[:url])
-    "#{application.sitemap_check}"
+    haml :sitemap_test
   end
 
   post '/markup-test' do
-    product_page = Markup.new(params[:url])
-    "Markup is correct: #{product_page.correct?}"
+    haml :markup_test
   end
-require_relative 'lib/application_tester'
