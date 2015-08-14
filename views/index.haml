@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %title Website Tester
+  %body
+    %h1 Test your website here
+    %p Welcome
+    %form{ action: "/redirection-test", method: "post" }
+      %fieldset
+        %label{ for: "website" } Your Website url:
+        %input{ type: "text", name: "url", class: "text" }
+        %input{ type: "submit", value: "Redirection Test", class: "button" }

@@ -5,6 +5,7 @@ require_relative '../lib/website.rb'
 require_relative '../lib/robots_file.rb'
 require_relative '../lib/sitemap.rb'
 require_relative '../lib/markup.rb'
+require_relative '../lib/application_tester.rb'
 require 'webmock/rspec'
 allowed_urls = [/structured-data-testing-tool.developers.google.com/]
 WebMock.disable_net_connect!(allow_localhost: true, allow: allowed_urls)
