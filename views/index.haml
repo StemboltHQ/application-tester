@@ -10,3 +10,15 @@
         %label{ for: "website" } Your Website url:
         %input{ type: "text", name: "url", class: "text" }
         %input{ type: "submit", value: "Redirection Test", class: "button" }
+
+    %form{ action: "/robots-file-test", method: "post" }
+      %fieldset
+        %label{ for: "website" } Your Website url:
+        %input{ type: "text", name: "url", class: "text" }
+        %input{ type: "submit", value: "Robots File Test", class: "button" }
+
+    %form{ action: "/sitemaps-test", method: "post" }
+      %fieldset
+        %label{ for: "website" } Your Website url:
+        %input{ type: "text", name: "url", class: "text" }
+        %input{ type: "submit", value: "Sitemaps Test", class: "button" }

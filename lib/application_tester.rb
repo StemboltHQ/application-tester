@@ -19,11 +19,9 @@ class ApplicationTester
   end
 
   def sitemap_check
-    if website.robots_file
-      "Has Sitemap links: #{!!website.robots_file.sitemap_urls}"
-      if website.robots_file.sitemap_urls
-        "All the Sitemap files exist and are not empty: #{!website.robots_file.has_empty_sitemaps?}"
-      end
-    end
+    return "Robots.txt does not exist. Sitemap is not specififed." unless website.robots_file
+    str = "Has Sitemap links: #{!!website.robots_file.sitemap_urls}"
+    return str unless website.robots_file.sitemap_urls
+    str+"<p>All the Sitemap files exist and are not empty: #{!website.robots_file.has_empty_sitemaps?}</p>"
   end
 end

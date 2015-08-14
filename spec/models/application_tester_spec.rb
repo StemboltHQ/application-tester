@@ -25,13 +25,13 @@ RSpec.describe ApplicationTester do
 
     context "sitemap exists" do
       it "returns a string with the result" do
-        expect(subject).to eq "All the Sitemap files exist and are not empty: true"
+        expect(subject).to eq "Has Sitemap links: true<p>All the Sitemap files exist and are not empty: true</p>"
       end
     end
     context "no sitemaps" do
     let(:website) { described_class.new("http://www.testfail.com") }
-      it "returns nil" do
-        expect(subject).to eq nil
+      it "returns a string saying that robots.txt doesn't exist" do
+        expect(subject).to eq "Robots.txt does not exist. Sitemap is not specififed."
       end
     end
   end
