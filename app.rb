@@ -19,4 +19,9 @@ require 'Haml'
     application = Application_tester.new(params[:url])
     "#{application.sitemap_check}"
   end
+
+  post '/markup-test' do
+    product_page = Markup.new(params[:url])
+    "Markup is correct: #{product_page.correct?}"
+  end
 require_relative 'lib/application_tester'
