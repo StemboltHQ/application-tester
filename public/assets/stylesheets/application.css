@@ -1,0 +1,41 @@
+/* line 1, components/_buttons.scss */
+.button {
+  margin-top: 15px;
+  background-color: #eee;
+  text-decoration: none;
+  font-family: inherit;
+  border: 0;
+  padding: 0.5em 2em;
+}
+
+/* line 1, _global.scss */
+body {
+  background-color: white;
+}
+
+/* line 1, _header.scss */
+#header {
+  position: relative;
+  font-size: 250%;
+  left: 20%;
+  color: #1253a4;
+  background-color: #f4f4f2;
+}
+
+/* line 1, _typography.scss */
+h1 {
+  color: #634271;
+}
+
+/* line 5, _typography.scss */
+.main-heading {
+  color: #1253a4;
+}
+
+/* line 1, _content.scss */
+#content {
+  position: relative;
+  background-color: #f4f4f2;
+  width: 75%;
+  left: 20%;
+}

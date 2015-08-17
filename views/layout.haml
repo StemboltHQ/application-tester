@@ -2,5 +2,10 @@
 %html
   %head
     %title Website Tester
+    %link(rel="stylesheet" href = "assets/stylesheets/application.css")
   %body
-    =yield
+    #wrapper
+      #header
+        %h1.main-heading Application Tester
+      #content
+        =yield
