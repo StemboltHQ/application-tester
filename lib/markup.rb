@@ -7,6 +7,7 @@ class Markup
   end
 
   def correct?
+    return false unless errors_match
     number_of_errors == 0
   end
 
@@ -21,6 +22,7 @@ class Markup
   end
 
   def errors_match
+    return nil unless post.body.match(/\"numErrors\":(\d*)/)
     post.body.match(/\"numErrors\":(\d*)/)[1]
   end
 end
