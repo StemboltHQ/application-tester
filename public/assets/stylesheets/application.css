@@ -15,27 +15,33 @@ body {
 
 /* line 5, _global.scss */
 form {
-  color: #a92159;
   width: 80%;
   border: none;
   padding: 0;
   position: relative;
 }
 
-/* line 13, _global.scss */
+/* line 12, _global.scss */
 fieldset {
   border: none;
 }
 
-/* line 17, _global.scss */
+/* line 16, _global.scss */
 #main_url_test, #markup {
   position: relative;
   left: 5%;
 }
 
-/* line 25, _global.scss */
+/* line 21, _global.scss */
 label {
   display: block;
+  color: #d40e52;
+  font-weight: bold;
+}
+
+/* line 27, _global.scss */
+p {
+  color: #3c3c3c;
 }
 
 /* line 1, _header.scss */
@@ -49,7 +55,7 @@ label {
 
 /* line 1, _typography.scss */
 h1 {
-  color: #634271;
+  color: #0b99bc;
 }
 
 /* line 5, _typography.scss */
@@ -60,7 +66,6 @@ h1 {
 /* line 1, _content.scss */
 #content {
   position: relative;
-  background-color: #f4f4f2;
   width: 75%;
   left: 20%;
 }

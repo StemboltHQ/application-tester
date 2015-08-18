@@ -8,4 +8,9 @@ h1 {
 
 label {
   display: block;
+  color: $color-labels-page;
+  font-weight: bold;
+
+p {
+  color: $color-text-main;
 }
