@@ -1,11 +1,13 @@
 /* line 1, components/_buttons.scss */
 .button {
   margin-top: 15px;
-  background-color: #eee;
+  background-color: #f4f4f2;
   text-decoration: none;
-  font-family: inherit;
+  font-family: "Futura";
+  color: #1253a4;
   border: 0;
-  padding: 0.5em 2em;
+  padding: 0.3em 2em 0.2em;
+  min-width: 14em;
 }
 
 /* line 1, _global.scss */
