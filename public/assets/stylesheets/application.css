@@ -29,13 +29,12 @@ fieldset {
 
 /* line 17, _global.scss */
 #main_url_test, #markup {
-  border: 0.5em groove;
+  position: relative;
+  left: 5%;
 }
 
-/* line 21, _global.scss */
-input {
-  position: relative;
-  left: 20%;
+/* line 25, _global.scss */
+label {
   display: block;
 }
 
