@@ -37,11 +37,13 @@ label {
   display: block;
   color: #d40e52;
   font-weight: bold;
+  font-family: "Futura";
 }
 
-/* line 27, _global.scss */
+/* line 28, _global.scss */
 p {
   color: #3c3c3c;
+  font-family: "Lucida Grande";
 }
 
 /* line 1, _header.scss */
@@ -49,18 +51,20 @@ p {
   position: relative;
   font-size: 250%;
   left: 20%;
-  color: #1253a4;
   background-color: #f4f4f2;
 }
 
 /* line 1, _typography.scss */
 h1 {
   color: #0b99bc;
+  font-family: "Bodini, Didot";
 }
 
-/* line 5, _typography.scss */
+/* line 6, _typography.scss */
 .main-heading {
   color: #1253a4;
+  font-family: "Futura bold";
+  text-shadow: 3px 2px #0b99bc;
 }
 
 /* line 1, _content.scss */
