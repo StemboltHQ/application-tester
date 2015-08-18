@@ -1,0 +1,17 @@
+form {
+  color: $color-labels-page;
+  width: 80%;
+  border: none;
+  padding: 0;
+  position: relative;
+}
+
+fieldset {
+  border: none;
+}
+
+input {
+  position:relative;
+  left: 20%;
+  display: block;
+}

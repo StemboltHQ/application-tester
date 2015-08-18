@@ -1,25 +1,27 @@
 %h1 Test your website here
-%p Welcome
-%form{ action: "/redirection-test", method: "post" }
-  %fieldset
-    %label{ for: "website" } Your Website url:
-    %input{ type: "text", name: "url", class: "text" }
-    %input{ type: "submit", value: "Redirection Test", class: "button" }
+%p
+  :markdown
+    Enter your website's main URL and check for the **www** and **https** redirections, existance of **robots.txt** and **sitemap.yaml** files
+  #main_url_test
+    %form{ action: "/redirection-test", method: "post" }
+      %fieldset
+        %label{ for: "website" } Main URL:
+        %input{ type: "text", name: "url", class: "url-input" }
+        %input{ type: "submit", value: "Redirection Test", class: "button" }
 
-%form{ action: "/robots-file-test", method: "post" }
-  %fieldset
-    %label{ for: "website" } Your Website url:
-    %input{ type: "text", name: "url", class: "text" }
-    %input{ type: "submit", value: "Robots File Test", class: "button" }
+    %form{ action: "/robots-file-test", method: "post" }
+      %fieldset
+        %input{ type: "text", name: "url", class: "text" }
+        %input{ type: "submit", value: "Robots File Test", class: "button" }
 
-%form{ action: "/sitemaps-test", method: "post" }
-  %fieldset
-    %label{ for: "website" } Your Website url:
-    %input{ type: "text", name: "url", class: "text" }
-    %input{ type: "submit", value: "Sitemaps Test", class: "button" }
+    %form{ action: "/sitemaps-test", method: "post" }
+      %fieldset
+        %input{ type: "text", name: "url", class: "text" }
+        %input{ type: "submit", value: "Sitemaps Test", class: "button" }
 %br
-%form{ action: "/markup-test", method: "post" }
-  %fieldset
-    %label{ for: "website" } Your Product's url:
-    %input{ type: "text", name: "url", class: "text" }
-    %input{ type: "submit", value: "Data Markup Test", class: "button" }
+#markup
+  %form{ action: "/markup-test", method: "post" }
+    %fieldset
+      %label{ for: "website" } Product's page:
+      %input{ type: "text", name: "url", class: "text" }
+      %input{ type: "submit", value: "Data Markup Test", class: "button" }
