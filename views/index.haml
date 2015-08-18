@@ -7,17 +7,17 @@
       %fieldset
         %label{ for: "website" } Main URL:
         %input{ type: "text", name: "url", class: "url-input" }
-        %input{ type: "submit", value: "Redirection Test", class: "button" }
+        %input{ type: "submit", value: "Redirection Test", class: "button button-submit" }
 
     %form{ action: "/robots-file-test", method: "post" }
       %fieldset
         %input{ type: "text", name: "url", class: "text" }
-        %input{ type: "submit", value: "Robots File Test", class: "button" }
+        %input{ type: "submit", value: "Robots File Test", class: "button button-submit" }
 
     %form{ action: "/sitemaps-test", method: "post" }
       %fieldset
         %input{ type: "text", name: "url", class: "text" }
-        %input{ type: "submit", value: "Sitemap File Test", class: "button" }
+        %input{ type: "submit", value: "Sitemap File Test", class: "button button-submit" }
 %br
   %p
     :markdown
@@ -27,4 +27,4 @@
     %fieldset
       %label{ for: "website" } Product's page:
       %input{ type: "text", name: "url", class: "text" }
-      %input{ type: "submit", value: "Data Markup Test", class: "button" }
+      %input{ type: "submit", value: "Data Markup Test", class: "button button-submit" }

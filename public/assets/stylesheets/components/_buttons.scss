@@ -6,5 +6,13 @@
   color: $color-button-label;
   border: 0;
   padding: 0.3em 2em 0.2em;
+}
+
+.button-submit {
   min-width: 14em;
+}
+
+.button-back {
+  float: left;
+  margin-top: 5%;
 }

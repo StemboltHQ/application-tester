@@ -7,7 +7,17 @@
   color: #1253a4;
   border: 0;
   padding: 0.3em 2em 0.2em;
+}
+
+/* line 11, components/_buttons.scss */
+.button-submit {
   min-width: 14em;
+}
+
+/* line 15, components/_buttons.scss */
+.button-back {
+  float: left;
+  margin-top: 5%;
 }
 
 /* line 1, _global.scss */
