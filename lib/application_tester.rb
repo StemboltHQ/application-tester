@@ -12,6 +12,8 @@ class ApplicationTester
 
   def redirection_check
     "Redirects to www: #{website.redirects_to_www?} <p>Redirects to https: #{website.redirects_to_https?}</p>"
+  rescue
+    "Invalid URL"
   end
 
   def robots_check

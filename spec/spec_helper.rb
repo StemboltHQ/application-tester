@@ -38,6 +38,7 @@ RSpec.configure do |config|
     stub_request(:get, 'http://www.test.com/redirected_sitemap.xml.gz').to_return(status: 200, :headers => { 'Content-Length' => 5 })
     stub_request(:get, '/www.testfailmap.com/robots.txt').to_return(status: 200, body: "Disallow: /\nSitemap: http://www.testfail.com/sitemap.xml.gz\n")
     stub_request(:get, '/www.testfail.com/sitemap.xml.gz').to_return(status: 404)
+    stub_request(:any, 'http://invalidUrl.com/').to_raise(StandardError)
   end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

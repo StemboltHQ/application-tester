@@ -7,8 +7,17 @@ RSpec.describe ApplicationTester do
     let(:website) { described_class.new("http://test.com") }
     subject { website.redirection_check }
 
-    it "returns a string with the result" do
-      expect(subject).to eq "Redirects to www: true <p>Redirects to https: true</p>"
+    context "valid URL" do
+      it "returns a string with the result" do
+        expect(subject).to eq "Redirects to www: true <p>Redirects to https: true</p>"
+      end
+    end
+
+    context "invalid URL" do
+      let(:website) { described_class.new("http://invalidUrl.com") }
+      it "returns a string saying that the url is invalid" do
+        expect(subject).to eq "Invalid URL"
+      end
     end
   end
 
