@@ -42,4 +42,12 @@ RSpec.describe SslCertificate do
       expect(subject).to eq true
     end
   end
+
+  describe "#expiration_date" do
+    subject { ssl_certificate.expiration_date }
+
+    it "returns certificate expiration time" do
+      expect(subject.class).to eq Time
+    end
+  end
 end
