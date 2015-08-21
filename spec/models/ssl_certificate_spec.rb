@@ -18,8 +18,16 @@ RSpec.describe SslCertificate do
   describe "#certificate" do
     subject { ssl_certificate.certificate }
 
+    context "ssl_certificate has a certificate" do
     it "returns OpenSSL certificate object" do
       expect(subject.class).to eq OpenSSL::X509::Certificate
+    end
+    end
+
+    context "ssl_certificate does not have a certificate" do
+    it "returns nil" do
+      expect(subject).to eq nil
+    end
     end
   end
 end

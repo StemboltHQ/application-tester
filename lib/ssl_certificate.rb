@@ -9,6 +9,8 @@ class SslCertificate
 
   def certificate
     OpenSSL::X509::Certificate.new(certificate_string)
+  rescue
+    nil
   end
 
   def certificate_string
