@@ -19,15 +19,27 @@ RSpec.describe SslCertificate do
     subject { ssl_certificate.certificate }
 
     context "ssl_certificate has a certificate" do
-    it "returns OpenSSL certificate object" do
-      expect(subject.class).to eq OpenSSL::X509::Certificate
-    end
+      it "returns OpenSSL certificate object" do
+        expect(subject.class).to eq OpenSSL::X509::Certificate
+      end
     end
 
     context "ssl_certificate does not have a certificate" do
-    it "returns nil" do
-      expect(subject).to eq nil
+      let(:ssl_certificate) { described_class.new("nossl") }
+      before(:each) do
+        allow(ssl_certificate).to receive(:certificate).and_return(nil)
+      end
+      it "returns nil" do
+        expect(subject).to eq nil
+      end
     end
+  end
+
+  describe "#valid?" do
+    subject { ssl_certificate.valid? }
+
+    it "returns true if the certificate is not expired" do
+      expect(subject).to eq true
     end
   end
 end
