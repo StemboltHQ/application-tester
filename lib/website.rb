@@ -22,6 +22,11 @@ class Website
     request_data.header['Location']
   end
 
+  def ssl_certificate
+    host = UrlRequest.new(url).uri.host
+    SslCertificate.new(host)
+  end
+
   private
   attr_reader :url
 

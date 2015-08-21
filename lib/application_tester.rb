@@ -1,5 +1,6 @@
 require_relative 'url_request'
 require_relative 'robots_file'
+require_relative 'ssl_certificate'
 require_relative 'website'
 require_relative 'sitemap'
 
@@ -25,5 +26,10 @@ class ApplicationTester
     str = "Has Sitemap links: #{!!website.robots_file.sitemap_urls}"
     return str unless website.robots_file.sitemap_urls
     str+"<p>All the Sitemap files exist and are not empty: #{!website.robots_file.has_empty_sitemaps?}</p>"
+  end
+
+  def ssl_certificate_check
+    return "No SSL certificate exists" unless website.ssl_certificate
+    "Valid SSL certificate: #{website.ssl_certificate.valid?} <p>Expires: #{website.ssl_certificate.expiration_date}"
   end
 end

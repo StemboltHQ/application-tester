@@ -75,4 +75,12 @@ RSpec.describe Website do
       end
     end
   end
+
+  describe "#ssl_certificate" do
+    subject { url_request.ssl_certificate }
+
+    it" returns SslCertificate object" do
+      expect(subject.class).to eq SslCertificate
+    end
+  end
 end
