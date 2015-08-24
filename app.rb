@@ -23,4 +23,5 @@ require_relative 'lib/application_tester'
   end
 
   post '/ssl-test' do
+    haml :ssl_test
   end
