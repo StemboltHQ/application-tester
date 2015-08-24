@@ -21,3 +21,6 @@ require_relative 'lib/application_tester'
   post '/markup-test' do
     haml :markup_test
   end
+
+  post '/ssl-test' do
+  end
