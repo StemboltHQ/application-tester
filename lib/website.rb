@@ -25,6 +25,8 @@ class Website
   def ssl_certificate
     host = UrlRequest.new(url).uri.host
     SslCertificate.new(host)
+  rescue
+    false
   end
 
   private

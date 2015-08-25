@@ -19,19 +19,9 @@ RSpec.describe SslCertificate do
     subject { ssl_certificate.certificate }
 
     context "ssl_certificate has a certificate" do
-      it "returns OpenSSL certificate object" do
-        expect(subject.class).to eq OpenSSL::X509::Certificate
-      end
+    it "returns OpenSSL certificate object" do
+      expect(subject.class).to eq OpenSSL::X509::Certificate
     end
-
-    context "ssl_certificate does not have a certificate" do
-      let(:ssl_certificate) { described_class.new("nossl") }
-      before(:each) do
-        allow(ssl_certificate).to receive(:certificate).and_return(nil)
-      end
-      it "returns nil" do
-        expect(subject).to eq nil
-      end
     end
   end
 
@@ -46,8 +36,12 @@ RSpec.describe SslCertificate do
   describe "#expiration_date" do
     subject { ssl_certificate.expiration_date }
 
-    it "returns certificate expiration time" do
+    it "returns Time object" do
       expect(subject.class).to eq Time
+    end
+
+    it "returns certificate expiration time" do
+      expect(subject.to_s).to eq "3000-01-01 00:00:00 UTC"
     end
   end
 end

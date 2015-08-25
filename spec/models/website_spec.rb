@@ -79,8 +79,17 @@ RSpec.describe Website do
   describe "#ssl_certificate" do
     subject { url_request.ssl_certificate }
 
-    it" returns SslCertificate object" do
-      expect(subject.class).to eq SslCertificate
+    context "exists" do
+      it "returns SslCertificate object" do
+        expect(subject.class).to eq SslCertificate
+      end
+    end
+
+    context "doesn't exist" do
+      it "returns nil" do
+        allow(SslCertificate).to receive(:new).and_raise(ArgumentError)
+        expect(subject).to eq false
+      end
     end
   end
 end

@@ -5,12 +5,11 @@ class SslCertificate
 
   def initialize(host)
     @host = host
+    raise ArgumentError.new("No SSL certificate was found for this host") unless !certificate_string.empty?
   end
 
   def certificate
     OpenSSL::X509::Certificate.new(certificate_string)
-  rescue
-    nil
   end
 
   def valid?
