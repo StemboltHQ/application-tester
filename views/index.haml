@@ -3,27 +3,12 @@
   :markdown
     Enter your website's main URL and check for the **www** and **https** redirections, existance of **robots.txt** and **sitemap.yaml** files
   #main_url_test
-    %form#redirection{ action: "/redirection-test", method: "post" }
+    %form#domain_tests{ action: "/redirection-test", method: "post" }
       %fieldset
         %label{ for: "website" } Main URL:
         %input{ type: "text", name: "url", class: "url-input" }
-        %input{ type: "submit", value: "Redirection Test", class: "button button-submit" }
-
-    #test_results
-    %form{ action: "/robots-file-test", method: "post" }
-      %fieldset
-        %input{ type: "text", name: "url", class: "text" }
-        %input{ type: "submit", value: "Robots File Test", class: "button button-submit" }
-
-    %form{ action: "/sitemaps-test", method: "post" }
-      %fieldset
-        %input{ type: "text", name: "url", class: "text" }
-        %input{ type: "submit", value: "Sitemap File Test", class: "button button-submit" }
-
-    %form{ action: "/ssl-test", method: "post" }
-      %fieldset
-        %input{ type: "text", name: "url", class: "text" }
-        %input{ type: "submit", value: "SSL Certificate Test", class: "button button-submit" }
+        %input{ type: "submit", value: "Test Domain", class: "button button-submit" }
+    #domain_test_results
 %br
   %p
     :markdown

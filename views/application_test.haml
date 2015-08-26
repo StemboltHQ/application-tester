@@ -1,0 +1,5 @@
+- application = ApplicationTester.new(params[:url])
+%p= application.redirection_check
+%p= application.robots_check
+%p= application.sitemap_check
+%p= application.ssl_certificate_check

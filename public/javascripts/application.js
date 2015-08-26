@@ -1,13 +1,13 @@
 $(document).ready(function() {
-  $("form#redirection").submit(function(e) {
+  $("form#domain_tests").submit(function(e) {
     e.preventDefault();
 
     $.ajax({
       type: "POST",
-      url: "/redirection-test",
+      url: "/application-test",
       data: $(event.target).serialize(),
       success: function(result) {
-      $("#test_results").html(result);
+      $("#domain_test_results").html(result);
       }
     });
   });
