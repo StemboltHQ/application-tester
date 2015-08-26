@@ -7,7 +7,7 @@ require_relative 'lib/application_tester'
   end
 
   post '/redirection-test' do
-    haml :redirection_test
+    haml :redirection_test, layout: (request.xhr? ? false : :layout)
   end
 
   post '/robots-file-test' do
