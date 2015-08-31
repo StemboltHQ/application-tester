@@ -41,7 +41,7 @@ RSpec.describe ApplicationTester do
     context "no sitemaps" do
     let(:application) { described_class.new("http://www.testfail.com") }
       it "returns a string saying that robots.txt doesn't exist" do
-        expect(subject).to eq "Robots.txt does not exist. Sitemap is not specififed."
+        expect(subject).to eq "Sitemap is not specififed."
       end
     end
   end
