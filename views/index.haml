@@ -14,8 +14,9 @@
     :markdown
       Enter your product's page URL and check whether it has the correct **markup**
 #markup
-  %form{ action: "/markup-test", method: "post" }
+  %form#markup_test{ action: "/markup-test", method: "post" }
     %fieldset
       %label{ for: "website" } Product's page:
       %input{ type: "text", name: "url", class: "text" }
       %input{ type: "submit", value: "Data Markup Test", class: "button button-submit" }
+  #markup_test_results

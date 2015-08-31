@@ -11,5 +11,5 @@ require_relative 'lib/application_tester'
   end
 
   post '/markup-test' do
-    haml :markup_test
+    haml :markup_test, layout: (request.xhr? ? false : :layout)
   end

@@ -11,4 +11,16 @@ $(document).ready(function() {
       }
     });
   });
+  $("form#markup_test").submit(function(e) {
+    e.preventDefault();
+
+    $.ajax({
+      type: "POST",
+      url: "/markup-test",
+      data: $(event.target).serialize(),
+      success: function(result) {
+      $("#markup_test_results").html(result);
+      }
+    });
+  });
 });
