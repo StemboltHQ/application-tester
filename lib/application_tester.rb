@@ -7,8 +7,8 @@ require_relative 'sitemap'
 class ApplicationTester
   attr_reader :website
 
-  def initialize(url)
-    @website = Website.new(url)
+  def initialize(domain)
+    @website = Website.new("http://"+domain)
   end
 
   def redirection_check

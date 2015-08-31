@@ -1,11 +1,11 @@
 require "spec_helper"
 
 RSpec.describe ApplicationTester do
-  let(:application) { described_class.new("http://www.test.com") }
+  let(:application) { described_class.new("www.test.com") }
   let(:certificate_double) { double("OpenSSL::X509::Certificate", not_before: Time.utc(2000), not_after: Time.utc(3000), class: OpenSSL::X509::Certificate) }
 
   describe "#redirection_check" do
-    let(:application) { described_class.new("http://test.com") }
+    let(:application) { described_class.new("test.com") }
     subject { application.redirection_check }
 
     context "valid URL" do
@@ -15,7 +15,7 @@ RSpec.describe ApplicationTester do
     end
 
     context "invalid URL" do
-      let(:application) { described_class.new("http://invalidUrl.com") }
+      let(:application) { described_class.new("invalidUrl.com") }
       it "returns a string saying that the url is invalid" do
         expect(subject).to eq "Invalid URL"
       end
@@ -39,7 +39,7 @@ RSpec.describe ApplicationTester do
       end
     end
     context "no sitemaps" do
-    let(:application) { described_class.new("http://www.testfail.com") }
+    let(:application) { described_class.new("www.testfail.com") }
       it "returns a string saying that robots.txt doesn't exist" do
         expect(subject).to eq "Sitemap is not specififed."
       end

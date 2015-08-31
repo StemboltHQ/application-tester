@@ -1,5 +1,5 @@
 class Website
-  def initialize(url)
+  def initialize (url)
     @url = url
   end
 
