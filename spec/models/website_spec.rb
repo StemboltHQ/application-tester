@@ -92,4 +92,21 @@ RSpec.describe Website do
       end
     end
   end
+
+  describe "#url_update" do
+    subject { url_request.url_update }
+
+    context "url gets redirected" do
+      it "updates the url" do
+        expect(subject).to eq "https://www.test.com/"
+      end
+    end
+
+    context "url is not redirected" do
+      let(:url_request) { described_class.new("https://www.test.com/") }
+      it "url stays the same" do
+        expect(subject).to eq "https://www.test.com/"
+      end
+    end
+  end
 end

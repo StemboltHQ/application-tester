@@ -29,6 +29,10 @@ class Website
     false
   end
 
+  def url_update
+    @url = redirects_to
+  end
+
   private
   attr_reader :url
 
