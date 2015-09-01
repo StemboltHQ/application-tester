@@ -1,4 +1,5 @@
 require "openssl"
+require "active_support/time"
 
 class SslCertificate
   attr_reader :host
@@ -29,6 +30,6 @@ class SslCertificate
   end
 
   def warning_time
-   Time.now + 60*60*24*30*4
+    4.month.from_now
   end
 end
