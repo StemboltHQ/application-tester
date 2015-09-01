@@ -1,4 +1,4 @@
-- application = ApplicationTester.new(params[:url])
+- application = ApplicationTester.new(params[:url].rstrip)
 %p= application.redirection_check
 - application.website.url_update
 %p= application.robots_check
