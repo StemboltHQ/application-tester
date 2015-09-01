@@ -23,4 +23,12 @@ class SslCertificate
   def certificate_string
     %x(openssl s_client -connect #{host}:443 2>&1 < /dev/null | sed -n '/-----BEGIN/,/-----END/p')
   end
+
+  def on_warning?
+    expiration_date <= warning_time
+  end
+
+  def warning_time
+   Time.now + 60*60*24*30*4
+  end
 end

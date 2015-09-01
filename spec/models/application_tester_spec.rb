@@ -68,6 +68,27 @@ RSpec.describe ApplicationTester do
     end
   end
 
+  describe "#ssl_warning" do
+    subject { application.ssl_warning }
+    before(:each) do
+      allow(application.website).to receive(:ssl_certificate).and_return(certificate_double)
+    end
+
+    context "certificate expires in more than 4 months" do
+      it "return an empty string" do
+        allow(application.website.ssl_certificate).to receive(:on_warning?).and_return(false)
+        expect(subject).to eq ""
+      end
+    end
+
+    context "certificate expires in 4 months or less" do
+      it "return a warning string" do
+        allow(application.website.ssl_certificate).to receive(:on_warning?).and_return(true)
+        expect(subject).to eq "WARNING: SSL certificate expires in less than 4 months!"
+      end
+    end
+  end
+
   describe "#test_from_command_line" do
     subject { application.test_from_command_line }
 

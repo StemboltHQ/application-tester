@@ -33,11 +33,17 @@ class ApplicationTester
     "Valid SSL certificate: #{website.ssl_certificate.valid?} <p>Expires: #{website.ssl_certificate.expiration_date}"
   end
 
+  def ssl_warning
+    return "" unless website.ssl_certificate.on_warning?
+    "WARNING: SSL certificate expires in less than 4 months!"
+  end
+
   def test_from_command_line
     puts redirection_check.split(/<p>/)
     website.url_update
     puts robots_check
     puts sitemap_check.split(/<p>/)
     puts ssl_certificate_check.split(/<p>/)
+    puts ssl_warning
   end
 end
