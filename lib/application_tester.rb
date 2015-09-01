@@ -12,7 +12,7 @@ class ApplicationTester
   end
 
   def redirection_check
-    "Redirects to www: #{website.redirects_to_www?} <p>Redirects to https: #{website.redirects_to_https?}</p>"
+    "Redirects to www: #{website.redirects_to_www?} <p>Redirects to https: #{website.redirects_to_https?}"
   rescue
     "Invalid URL"
   end
@@ -25,11 +25,19 @@ class ApplicationTester
     return "Sitemap is not specififed." unless website.robots_file
     str = "Has Sitemap links: #{!!website.robots_file.sitemap_urls}"
     return str unless website.robots_file.sitemap_urls
-    str+"<p>All the Sitemap files exist and are not empty: #{!website.robots_file.has_empty_sitemaps?}</p>"
+    str+"<p>All the Sitemap files exist and are not empty: #{!website.robots_file.has_empty_sitemaps?}"
   end
 
   def ssl_certificate_check
     return "No SSL certificate exists" unless website.ssl_certificate
     "Valid SSL certificate: #{website.ssl_certificate.valid?} <p>Expires: #{website.ssl_certificate.expiration_date}"
+  end
+
+  def test_from_command_line
+    puts redirection_check.split(/<p>/)
+    website.url_update
+    puts robots_check
+    puts sitemap_check.split(/<p>/)
+    puts ssl_certificate_check.split(/<p>/)
   end
 end

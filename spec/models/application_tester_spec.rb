@@ -10,7 +10,7 @@ RSpec.describe ApplicationTester do
 
     context "valid URL" do
       it "returns a string with the result" do
-        expect(subject).to eq "Redirects to www: true <p>Redirects to https: true</p>"
+        expect(subject).to eq "Redirects to www: true <p>Redirects to https: true"
       end
     end
 
@@ -35,7 +35,7 @@ RSpec.describe ApplicationTester do
 
     context "sitemap exists" do
       it "returns a string with the result" do
-        expect(subject).to eq "Has Sitemap links: true<p>All the Sitemap files exist and are not empty: true</p>"
+        expect(subject).to eq "Has Sitemap links: true<p>All the Sitemap files exist and are not empty: true"
       end
     end
     context "no sitemaps" do
@@ -65,6 +65,14 @@ RSpec.describe ApplicationTester do
         allow(application.website).to receive(:ssl_certificate).and_return(nil)
         expect(subject).to eq "No SSL certificate exists"
       end
+    end
+  end
+
+  describe "#test_from_command_line" do
+    subject { application.test_from_command_line }
+
+    it "outputs the result to the command line" do
+      expect{subject}.to output.to_stdout
     end
   end
 end
