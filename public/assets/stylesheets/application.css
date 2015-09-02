@@ -1,0 +1,87 @@
+/* line 1, components/_buttons.scss */
+.button {
+  margin-top: 15px;
+  background-color: #f4f4f2;
+  text-decoration: none;
+  font-family: "Futura";
+  color: #1253a4;
+  border: 0;
+  padding: 0.3em 2em 0.2em;
+}
+
+/* line 11, components/_buttons.scss */
+.button-submit {
+  min-width: 14em;
+}
+
+/* line 15, components/_buttons.scss */
+.button-back {
+  float: left;
+  margin-top: 5%;
+}
+
+/* line 1, _global.scss */
+body {
+  background-color: white;
+}
+
+/* line 5, _global.scss */
+form {
+  width: 80%;
+  border: none;
+  padding: 0;
+  position: relative;
+}
+
+/* line 12, _global.scss */
+fieldset {
+  border: none;
+}
+
+/* line 16, _global.scss */
+#main_url_test, #markup {
+  position: relative;
+  left: 5%;
+}
+
+/* line 21, _global.scss */
+label {
+  display: block;
+  color: #d40e52;
+  font-weight: bold;
+  font-family: "Futura";
+}
+
+/* line 28, _global.scss */
+p {
+  color: #3c3c3c;
+  font-family: "Lucida Grande";
+}
+
+/* line 1, _header.scss */
+#header {
+  position: relative;
+  font-size: 250%;
+  left: 20%;
+  background-color: #f4f4f2;
+}
+
+/* line 1, _typography.scss */
+h1 {
+  color: #0b99bc;
+  font-family: "Bodini, Didot";
+}
+
+/* line 6, _typography.scss */
+.main-heading {
+  color: #1253a4;
+  font-family: "Futura bold";
+  text-shadow: 3px 2px #0b99bc;
+}
+
+/* line 1, _content.scss */
+#content {
+  position: relative;
+  width: 75%;
+  left: 20%;
+}
