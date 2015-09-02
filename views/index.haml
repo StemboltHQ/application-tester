@@ -1,0 +1,30 @@
+%h1 Test your website here
+%p
+  :markdown
+    Enter your website's main URL and check for the **www** and **https** redirections, existance of **robots.txt** and **sitemap.yaml** files
+  #main_url_test
+    %form{ action: "/redirection-test", method: "post" }
+      %fieldset
+        %label{ for: "website" } Main URL:
+        %input{ type: "text", name: "url", class: "url-input" }
+        %input{ type: "submit", value: "Redirection Test", class: "button button-submit" }
+
+    %form{ action: "/robots-file-test", method: "post" }
+      %fieldset
+        %input{ type: "text", name: "url", class: "text" }
+        %input{ type: "submit", value: "Robots File Test", class: "button button-submit" }
+
+    %form{ action: "/sitemaps-test", method: "post" }
+      %fieldset
+        %input{ type: "text", name: "url", class: "text" }
+        %input{ type: "submit", value: "Sitemap File Test", class: "button button-submit" }
+%br
+  %p
+    :markdown
+      Enter your product's page URL and check whether it has the correct **markup**
+#markup
+  %form{ action: "/markup-test", method: "post" }
+    %fieldset
+      %label{ for: "website" } Product's page:
+      %input{ type: "text", name: "url", class: "text" }
+      %input{ type: "submit", value: "Data Markup Test", class: "button button-submit" }
