@@ -1,8 +1,8 @@
 #Application-Tester
 
-Application for checking wether your website redirects to `www` and `https`
+Application that checks whether your website redirects to `www` and `https`
 
-Also checks the existance of **robots.txt** and **sitemap.yaml**
+Also checks for the existance of **robots.txt** and **sitemap.xml**
 
 ##Installation
 
