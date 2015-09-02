@@ -3,6 +3,7 @@ require_relative 'robots_file'
 require_relative 'ssl_certificate'
 require_relative 'website'
 require_relative 'sitemap'
+require 'colorize'
 
 class ApplicationTester
   attr_reader :website
@@ -44,6 +45,6 @@ class ApplicationTester
     puts robots_check
     puts sitemap_check.split(/<p>/)
     puts ssl_certificate_check.split(/<p>/)
-    puts ssl_warning
+    puts ssl_warning.colorize(:red)
   end
 end
