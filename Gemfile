@@ -5,6 +5,7 @@ gem 'sass'
 gem 'activesupport'
 gem 'colorize'
 gem 'whois'
+gem 'mail'
 
 group :test do
   gem 'rspec'

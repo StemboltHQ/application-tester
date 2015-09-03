@@ -15,6 +15,9 @@ GEM
     docile (1.1.5)
     i18n (0.7.0)
     json (1.8.3)
+    mail (2.6.3)
+      mime-types (>= 1.16, < 3)
+    mime-types (2.6.1)
     minitest (5.8.0)
     rack (1.6.4)
     rack-protection (1.5.3)
@@ -59,6 +62,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   colorize
+  mail
   rspec
   sass
   simplecov
