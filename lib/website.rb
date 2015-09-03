@@ -29,6 +29,11 @@ class Website
     false
   end
 
+  def domain
+    domain = UrlRequest.new(url).uri.host
+    Domain.new(domain)
+  end
+
   def url_update
     @url = redirects_to
   end

@@ -3,6 +3,7 @@ require_relative 'robots_file'
 require_relative 'ssl_certificate'
 require_relative 'website'
 require_relative 'sitemap'
+require_relative 'domain'
 require 'colorize'
 
 class ApplicationTester
@@ -39,7 +40,12 @@ class ApplicationTester
     "WARNING: SSL certificate expires in less than 4 months!"
   end
 
+  def domain_expiration_check
+    "Domain expiration day: #{website.domain.expiration_date}"
+  end
+
   def test_from_command_line
+    puts domain_expiration_check
     puts redirection_check.split(/<p>/)
     website.url_update
     puts robots_check
