@@ -8,4 +8,13 @@ class EmailNotification
     @sender = sender
     @message = message
   end
+
+  def send
+    Mail.new(
+      from: sender,
+      to: recipient,
+      subject: 'Application Tester: Errors',
+      body: message
+    ).deliver
+  end
 end
