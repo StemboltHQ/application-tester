@@ -1,4 +1,5 @@
 - application = ApplicationTester.new(params[:url].rstrip)
+%p= application.domain_expiration_check
 %p= application.redirection_check
 - application.website.url_update
 %p= application.robots_check
