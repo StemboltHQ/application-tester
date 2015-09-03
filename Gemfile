@@ -4,6 +4,7 @@ gem 'sinatra'
 gem 'sass'
 gem 'activesupport'
 gem 'colorize'
+gem 'whois'
 
 group :test do
   gem 'rspec'
