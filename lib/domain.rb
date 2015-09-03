@@ -1,4 +1,5 @@
 require 'whois'
+require 'active_support/time'
 
 class Domain
   attr_reader :domain
@@ -9,6 +10,14 @@ class Domain
 
   def expiration_date
     whois_object.expires_on
+  end
+
+  def warning_time
+    4.month.from_now
+  end
+
+  def expiration_warning?
+    expiration_date <= warning_time
   end
 
   private
