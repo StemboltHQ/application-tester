@@ -1,0 +1,22 @@
+h1 {
+  color: $color-title-page;
+  font-family: $font-title-page;
+}
+
+.main-heading {
+  color: $color-title-main;
+  font-family: $font-header;
+  text-shadow: 3px 2px $color-title-page;
+}
+
+label {
+  display: block;
+  color: $color-labels-page;
+  font-weight: bold;
+  font-family: $font-label;
+}
+
+p {
+  color: $color-text-main;
+  font-family: $font-main-text;
+}

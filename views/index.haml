@@ -1,0 +1,22 @@
+%h1 Test your website here
+%p
+  :markdown
+    Enter your website's domain and check for the **www** and **https** redirections, existance of **robots.txt** and **sitemap.yaml** files
+  #main_url_test
+    %form#domain_tests{ action: "/redirection-test", method: "post" }
+      %fieldset
+        %label{ for: "website" } Domain:
+        %input{ type: "text", name: "url", class: "url-input" }
+        %input{ type: "submit", value: "Test Domain", class: "button button-submit" }
+    #domain_test_results
+%br
+  %p
+    :markdown
+      Enter your product's page URL and check whether it has the correct **markup**
+#markup
+  %form#markup_test{ action: "/markup-test", method: "post" }
+    %fieldset
+      %label{ for: "website" } Product's page:
+      %input{ type: "text", name: "url", class: "text" }
+      %input{ type: "submit", value: "Data Markup Test", class: "button button-submit" }
+  #markup_test_results
