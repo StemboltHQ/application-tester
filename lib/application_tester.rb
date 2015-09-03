@@ -44,8 +44,14 @@ class ApplicationTester
     "Domain expiration day: #{website.domain.expiration_date}"
   end
 
+  def domain_expiration_warning
+    return "" unless website.domain.expiration_warning?
+    "WARNING: Domain expires in less than 4 months!"
+  end
+
   def test_from_command_line
     puts domain_expiration_check
+    puts domain_expiration_warning.colorize(:red)
     puts redirection_check.split(/<p>/)
     website.url_update
     puts robots_check
