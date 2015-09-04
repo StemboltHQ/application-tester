@@ -1,4 +1,6 @@
+require 'net/smtp'
 require 'mail'
+require_relative '../config/settings.rb'
 
 class EmailNotification
   attr_reader :recipient, :sender, :message

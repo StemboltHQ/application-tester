@@ -1,0 +1,6 @@
+mailer:
+  smtp: "smtp.gmail.com"
+  smtp_port: 587
+  domain: "freerunningtechnologies.com"
+  username: "daria@freerunningtechnologies.com"
+  password: "fill_in"
