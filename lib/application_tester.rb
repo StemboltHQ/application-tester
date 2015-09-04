@@ -36,8 +36,8 @@ class ApplicationTester
   end
 
   def ssl_warning
-    return "" unless website.ssl_certificate.on_warning?
-    "WARNING: SSL certificate expires in less than 4 months!"
+    return "" unless website.ssl_certificate && website.ssl_certificate.on_warning?
+    "WARNING: SSL certificate for expires in less than 4 months!"
   end
 
   def domain_expiration_check
@@ -47,6 +47,16 @@ class ApplicationTester
   def domain_expiration_warning
     return "" unless website.domain.expiration_warning?
     "WARNING: Domain expires in less than 4 months!"
+  end
+
+  def www_redirection_warning
+    return "" unless !website.redirects_to_www?
+    "WARNING: does not redirect to WWW"
+  end
+
+  def https_redirection_warning
+    return "" unless !website.redirects_to_https?
+    "WARNING: does not redirect to HTTPS"
   end
 
   def test_from_command_line
