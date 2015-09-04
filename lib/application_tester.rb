@@ -4,6 +4,7 @@ require_relative 'ssl_certificate'
 require_relative 'website'
 require_relative 'sitemap'
 require_relative 'domain'
+require_relative 'email_notification'
 require 'colorize'
 
 class ApplicationTester
@@ -60,13 +61,25 @@ class ApplicationTester
   end
 
   def test_from_command_line
+    errors_msg = ""
     puts domain_expiration_check
     puts domain_expiration_warning.colorize(:red)
+    errors_msg+= domain_expiration_warning
     puts redirection_check.split(/<p>/)
+    errors_msg+= "\n"+www_redirection_warning
+    errors_msg+= "\n"+https_redirection_warning
     website.url_update
     puts robots_check
     puts sitemap_check.split(/<p>/)
     puts ssl_certificate_check.split(/<p>/)
     puts ssl_warning.colorize(:red)
+    errors_msg+= "\n"+ssl_warning
+    send_errors_by_email(errors_msg)
+  end
+
+  def send_errors_by_email(error_msg)
+    return nil unless !error_msg.empty?
+    message = "The following problems with #{website.domain.domain} were identified:" + error_msg
+    EmailNotification.new("todariasova@gmail.com", "Application tester: Errors", message).send
   end
 end
