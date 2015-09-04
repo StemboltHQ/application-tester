@@ -60,6 +60,18 @@ class ApplicationTester
     "WARNING: does not redirect to HTTPS"
   end
 
+  def robots_file_warning
+    return "" unless !!!website.robots_file
+    "WARNING: does not have robots.txt file"
+  end
+
+  def sitemap_warning
+    return "WARNING: "+sitemap_check unless website.robots_file
+    return "WARNING: no sitemaps are specified in robots.txt" unless !!website.robots_file.sitemap_urls
+    return  "" unless website.robots_file.has_empty_sitemaps?
+    "WARNING: has empty sitemaps"
+  end
+
   def test_from_command_line
     errors_msg = ""
     puts domain_expiration_check
@@ -70,7 +82,9 @@ class ApplicationTester
     errors_msg+= "\n"+https_redirection_warning
     website.url_update
     puts robots_check
+    errors_msg+= "\n"+robots_file_warning
     puts sitemap_check.split(/<p>/)
+    errors_msg+= "\n"+sitemap_warning
     puts ssl_certificate_check.split(/<p>/)
     puts ssl_warning.colorize(:red)
     errors_msg+= "\n"+ssl_warning
@@ -79,7 +93,7 @@ class ApplicationTester
 
   def send_errors_by_email(error_msg)
     return nil unless !error_msg.empty?
-    message = "The following problems with #{website.domain.domain} were identified:" + error_msg
+    message = "The following problems with #{website.domain.domain} were identified:\n" + error_msg
     EmailNotification.new("todariasova@gmail.com", "Application tester: Errors", message).send
   end
 end
