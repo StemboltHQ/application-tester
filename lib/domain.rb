@@ -2,10 +2,11 @@ require 'whois'
 require 'active_support/time'
 
 class Domain
-  attr_reader :domain
+  attr_reader :domain, :whois_object
 
   def initialize(domain)
     @domain = domain
+    @whois_object = whois
   end
 
   def expiration_date
@@ -21,7 +22,7 @@ class Domain
   end
 
   private
-  def whois_object
+  def whois
     c =Whois::Client.new
     c.lookup(domain)
   end

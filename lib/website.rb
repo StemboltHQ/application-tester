@@ -1,6 +1,8 @@
 class Website
+  attr_reader :url, :domain
   def initialize (url)
     @url = url
+    @domain = domain_object
   end
 
   def redirects_to_www?
@@ -29,7 +31,7 @@ class Website
     false
   end
 
-  def domain
+  def domain_object
     domain = UrlRequest.new(url).uri.host
     Domain.new(domain)
   end
@@ -39,8 +41,6 @@ class Website
   end
 
   private
-  attr_reader :url
-
   def request_data
     UrlRequest.new(url).get
   end
