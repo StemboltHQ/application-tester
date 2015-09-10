@@ -25,6 +25,10 @@ class Website
     request_data.header['Location']
   end
 
+  def temporary_redirection?
+    request_data.code == "302"
+  end
+
   def ssl_certificate
     host = UrlRequest.new(url).uri.host
     SslCertificate.new(host)

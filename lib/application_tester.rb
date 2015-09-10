@@ -60,6 +60,11 @@ class ApplicationTester
     "WARNING: does not redirect to HTTPS"
   end
 
+  def temporary_redirection_warning
+    return "" unless website.temporary_redirection?
+    "WARNING: redirects via 302 temporary redirect"
+  end
+
   def robots_file_warning
     return "" unless !!!website.robots_file
     "WARNING: does not have robots.txt file"
@@ -75,8 +80,10 @@ class ApplicationTester
   def test_from_command_line
     errors = []
     puts domain_expiration_check
-    puts domain_expiration_warning.colorize(:red)
+    puts domain_expiration_warning.colorize(:red) if !domain_expiration_warning.empty?
     errors.push(domain_expiration_warning)
+    puts temporary_redirection_warning.colorize(:red) if !temporary_redirection_warning.empty?
+    errors.push(temporary_redirection_warning)
     puts redirection_check.split(/<p>/)
     errors.push(www_redirection_warning)
     errors.push(https_redirection_warning)
