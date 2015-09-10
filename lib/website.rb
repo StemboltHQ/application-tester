@@ -1,5 +1,6 @@
 class Website
   attr_reader :url, :domain
+
   def initialize (url)
     @url = url
     @domain = domain_object

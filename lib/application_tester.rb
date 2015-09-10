@@ -73,22 +73,27 @@ class ApplicationTester
   end
 
   def test_from_command_line
-    errors_msg = ""
+    errors = []
     puts domain_expiration_check
     puts domain_expiration_warning.colorize(:red)
-    errors_msg+= domain_expiration_warning
+    errors.push(domain_expiration_warning)
     puts redirection_check.split(/<p>/)
-    errors_msg+= "\n"+www_redirection_warning
-    errors_msg+= "\n"+https_redirection_warning
+    errors.push(www_redirection_warning)
+    errors.push(https_redirection_warning)
     website.url_update
     puts robots_check
-    errors_msg+= "\n"+robots_file_warning
+    errors.push(robots_file_warning)
     puts sitemap_check.split(/<p>/)
-    errors_msg+= "\n"+sitemap_warning
+    errors.push(sitemap_warning)
     puts ssl_certificate_check.split(/<p>/)
     puts ssl_warning.colorize(:red)
-    errors_msg+= "\n"+ssl_warning
-    send_errors_by_email(errors_msg)
+    errors.push(ssl_warning)
+    send_errors_by_email(error_message(errors))
+  end
+
+  def error_message(errors)
+    errors = errors.select { |x| !x.empty? }
+    errors.join("\n")
   end
 
   def send_errors_by_email(error_msg)
@@ -96,4 +101,5 @@ class ApplicationTester
     message = "The following problems with #{website.domain.domain} were identified:\n" + error_msg
     EmailNotification.new("todariasova@gmail.com", "Application tester: Errors", message).send
   end
+
 end
