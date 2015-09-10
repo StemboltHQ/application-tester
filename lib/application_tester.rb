@@ -99,7 +99,7 @@ class ApplicationTester
   def send_errors_by_email(error_msg)
     return nil unless !error_msg.empty?
     message = "The following problems with #{website.domain.domain} were identified:\n" + error_msg
-    EmailNotification.new("todariasova@gmail.com", "Application tester: Errors", message).send
+    EmailNotification.new("Application tester: Errors", message).send
   end
 
 end

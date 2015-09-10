@@ -15,7 +15,7 @@ class Settings
   end
 
   class Mailer
-    attr_accessor :smtp, :smtp_port, :from_name, :from_email, :domain, :username, :password
+    attr_accessor :smtp, :smtp_port, :from_name, :from_email, :domain, :username, :password, :recipient
   end
 end
 

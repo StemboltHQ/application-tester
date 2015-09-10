@@ -5,8 +5,8 @@ require_relative '../config/settings.rb'
 class EmailNotification
   attr_reader :recipient, :sender, :message
 
-  def initialize (recipient, sender, message)
-    @recipient = recipient
+  def initialize (sender, message)
+    @recipient = Settings.new("config/settings.yaml").mailer.recipient
     @sender = sender
     @message = message
   end

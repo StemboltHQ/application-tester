@@ -4,3 +4,4 @@ mailer:
   domain: "freerunningtechnologies.com"
   username: "daria@freerunningtechnologies.com"
   password: "fill_in"
+  recipient: "sendtothisemail@mail.com"
