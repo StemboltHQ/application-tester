@@ -80,9 +80,7 @@ class ApplicationTester
   def test_from_command_line
     errors = []
     puts domain_expiration_check
-    puts domain_expiration_warning.colorize(:red) if !domain_expiration_warning.empty?
     errors.push(domain_expiration_warning)
-    puts temporary_redirection_warning.colorize(:red) if !temporary_redirection_warning.empty?
     errors.push(temporary_redirection_warning)
     puts redirection_check.split(/<p>/)
     errors.push(www_redirection_warning)
@@ -93,14 +91,21 @@ class ApplicationTester
     puts sitemap_check.split(/<p>/)
     errors.push(sitemap_warning)
     puts ssl_certificate_check.split(/<p>/)
-    puts ssl_warning.colorize(:red)
     errors.push(ssl_warning)
     send_errors_by_email(error_message(errors))
+    command_line_warnings(errors)
+  end
+
+  def errors_array(errors)
+    errors.select { |x| !x.empty? }
+  end
+
+  def command_line_warnings(errors)
+    errors_array(errors).map { |x| puts x.colorize(:red) }
   end
 
   def error_message(errors)
-    errors = errors.select { |x| !x.empty? }
-    errors.join("\n")
+    errors_array(errors).join("\n")
   end
 
   def send_errors_by_email(error_msg)
@@ -108,5 +113,4 @@ class ApplicationTester
     message = "The following problems with #{website.domain.domain} were identified:\n" + error_msg
     EmailNotification.new("Application tester: Errors", message).send
   end
-
 end
